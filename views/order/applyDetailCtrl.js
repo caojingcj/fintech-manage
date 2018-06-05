@@ -8,9 +8,10 @@
             vm.handle = {
                 deleteItemFromTable: deleteItemFromTable,
                 cancelOrder: cancelOrder,
+                guarantee:guarantee
             };
-
-            function cancelOrder() {
+            // 担保通过
+            function guarantee() {
                 swal({
                     title: '确认您的操作',
                     showCancelButton: true,
@@ -22,6 +23,58 @@
                     close()
                 }, function (err) {
                 });
+            }
+            // 取消
+           // 在yyyy-MM-dd前取消该订单，不需要收取任何手续费！已超过10天免息期，请上传手续费凭证，经后台审核后即可取消该订单！
+            vm.status = 10;
+            function cancelOrder() {
+                var template =
+                    '<div ng-if="'+vm.status+'">'+
+                    '<p class="text-danger" style="font-size: 12px;">已超过10天免息期，请上传手续费凭证，经后台审核后即可取消该订单！</p>' +
+                    '      <form enctype="multipart/form-data" method="POST">' +
+                    '           <div style="padding:0 20px;">' +
+                    '                <input name="file1" class="voucher" type="file" id="voucher" data-min-file-count="1" disabled>' +
+                    '           </div>' +
+                    '      </form>'+
+                    '</div>';
+
+                var title = vm.status === 10 ? '取消订单' : vm.status === 0 ? '上传打款凭证' : '';
+                swal({
+                    title: title,
+                    html: template,
+                    preConfirm: function () {
+                        return new Promise(function (resolve, reject) {
+                            if ($('#voucher')[0].value === '') {
+                                reject('您还未选择文件！')
+                            } else {
+                                resolve()
+                            }
+                        })
+                    },
+                    showCancelButton: true,
+                    allowOutsideClick: false,
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    width: '400px'
+                }).then(function (file) {
+                }, function () {
+                });
+
+                $("input[type=file].voucher").fileinput({ //这里的id是input标签的id
+                    allowedFileExtensions: ['jpeg', 'jpg', 'png', 'rar', 'zip', 'pdf'], // 允许的文件类型
+                    overwriteInitial: false,
+                    showPreview: false, //是否显示预览,不写默认为true
+                    showCaption: true, //是否显示标题
+                    language: 'zh', //设置语言
+                    maxFileSize: 5000, //文件的最大大小 5000KB=5兆
+                    maxFilesNum: 20, //最多文件数量
+                    autoReplace: false,
+                    showUpload: false, //是否显示上传按钮
+                    enctype: 'multipart/form-data',
+                    slugCallback: function (filename) {
+                        return filename.replace('(', '_').replace(']', '_');
+                    }
+                })
             }
 
             function deleteItemFromTable() {
