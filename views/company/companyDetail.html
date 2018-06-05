@@ -1,0 +1,301 @@
+<div class="detailPage" ng-controller="detailCtrl as dtl" ng-cloak>
+  <div class="border-bottom white-bg path">
+    <p class="p-w-m full-height">
+      <span ui-sref="app.home">控制台首页</span>
+      <span class="p-w-xs text-muted">/</span>
+      <span ui-sref="app.company.companyManage">商户管理</span>
+      <span class="p-w-xs text-muted">/</span>
+      <strong>商户详情</strong>
+    </p>
+  </div>
+  <div class="wrapper sidebar-content wrapper-content animated fadeInRight" ng-class="isSmart?'smart-no-padding':''">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="ibox ">
+          <div class="ibox-title">
+            <h5>商户基本信息</h5>
+          </div>
+          <div class="ibox-content">
+            <ul class="ul-list" style="margin-bottom: 0">
+              <li><span> <i class="fa fa-fw fa-dot-circle-o"></i> 商户编号</span> <span>999999</span></li>
+              <li><span> <i class="fa fa-fw fa-dot-circle-o"></i> 商户名称</span><span>上海美莱</span></li>
+              <li><span> <i class="fa fa-fw fa-dot-circle-o"></i> 商户状态</span><span class="label label-info">已启用</span></li>
+              <li><span> <i class="fa fa-fw fa-dot-circle-o"></i> 商户类型</span><span>整容</span></li>
+              <li><span> <i class="fa fa-fw fa-dot-circle-o"></i> 二维码</span>
+                <span>
+                  <a href="{{dtl.newUrl}}" data-gallery>点击查看
+                    </a>
+                </span>
+              </li>
+              <li >
+                <a class="btn btn-outline btn-primary" > <i class="fa fa-repeat"></i> 启用</a>
+                <a class="btn btn-outline btn-danger"> <i class="fa fa-ban"/> 禁用</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="ibox tabss">
+          <div class="ibox-title">
+            <h5>商户详情</h5>
+          </div>
+          <div class="ibox-content">
+
+            <uib-tabset>
+              <uib-tab ng-repeat="item in [
+                            ['基本信息', 'template/base-info.html'],
+                            ['财务信息', 'template/finance-info.html'],
+                            ['费率信息', 'template/rate-info.html'],
+                            ['项目配置', 'template/config-info.html'],
+                            ['渠道信息', 'template/channel-info.html']
+                        ] track by item[1]">
+                <uib-tab-heading>
+                  <span>{{item[0]}}</span>
+                </uib-tab-heading>
+                <div class="panels" ng-include="item[1]"></div>
+              </uib-tab>
+            </uib-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/ng-template" id="template/base-info.html">
+  <!--商户基本信息 1-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span>
+          <i class="fa fa-vcard" />
+      </span>
+      <span>商户信息</span>
+    </div>
+    <div class="panel-body">
+      <ul class="ul-list">
+        <li><span>商户名称</span><span>上海美莱</span></li>
+        <li><span>商户统一社会信用代码</span><span>IOS9001</span></li>
+        <li><span>营业执照名称</span><span>123123123</span></li>
+        <li><span>商户类型</span><span>整形</span></li>
+        <li><span>商户地址</span><span>上海市徐汇区龙漕路</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span>
+          <i class="fa fa-vcard" />
+      </span>
+      <span>法人信息</span>
+    </div>
+    <div class="panel-body">
+      <ul class="ul-list">
+        <li><span>姓名</span><span>方青</span></li>
+        <li><span>身份证号</span><span>34082719990985153636</span></li>
+        <li><span>手机号</span><span>18267924536</span></li>
+      </ul>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="template/finance-info.html">
+  <!--清算账户 8-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span><i class="fa fa-vcard"/></span>
+      <span>清算账户</span>
+    </div>
+    <div class="panel-body">
+      <a class="btn btn-sm btn-outline btn-success" style="margin-top: 0!important;" ng-click="dtl.handle.openModal('template/edit-playMoney.html', '新增打款账户信息', 1)"> <i class="fa fa-plus"></i> 新增清算账户</a>
+      <table id="clearingAccountTable"></table>
+    </div>
+  </div>
+
+</script>
+<!--新增帐号-->
+<script type="text/ng-template" id="template/edit-playMoney.html">
+  <form class="form-horizontal fontSizeCus" name="hspForm" novalidate w5c-form-validate=""
+        w5c-submit="dtl.handle.submitForm(1)">
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">清算账号名（*）</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" required
+               ng-model="dtl.modalParams.accountName" name="accountName"
+               placeholder="开户人"
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-3 control-label">账号（*）</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" placeholder="银行卡号" name="accountBankNo" ng-model="dtl.modalParams.accountBankNo" ng-required="true" ng-pattern="/^[0-9]*$/">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">银行（*）</label>
+      <div class="col-sm-9">
+        <select class="  form-control" ng-model="dtl.modalParams.bankCode"
+                name="bankCode" required id="bankId">
+          <option disabled value="">--请选择：开户银行--</option>
+          <option>中国建设银行</option>
+          <option>招商银行</option>
+          <option>兴业银行</option>
+          <option>浦发银行</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">开户行（*）</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" required
+               ng-model="dtl.modalParams.accountName" name="accountName"
+               placeholder="开户人"
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">账户类型（*）</label>
+      <div class="col-sm-9">
+        <select class="form-control" ng-model="dtl.modalParams.bankType" required
+                name="bankType">
+          <option disabled value="">--请选择--</option>
+          <option value="1">对公</option>
+          <option value="2">对私</option>
+        </select>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">确定</button>
+    <button type="button" class="btn" ng-click="close()">取消</button>
+  </form>
+</script>
+
+<!--费率信息-->
+<script type="text/ng-template" id="template/rate-info.html">
+  <!--费率信息 18-->
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <span><i class="fa fa-vcard"/></span>
+      <span>费率信息</span>
+    </div>
+    <div class="panel-body">
+      <a class="btn btn-sm btn-outline btn-success" style="margin-top: 0!important;" ng-click="dtl.handle.openModal('template/edit-rate.html', '新增费率信息', 1)"> <i class="fa fa-plus"></i> 新增费率</a>
+      <table id="rateBsTable"></table>
+    </div>
+  </div>
+</script>
+<!--新增期数-->
+<script type="text/ng-template" id="template/edit-rate.html">
+  <form class="form-horizontal fontSizeCus" name="edit" novalidate w5c-form-validate=""
+        w5c-submit="dtl.handle.submitForm(3)">
+    <div class="form-group">
+      <label class="col-xs-4 control-label">期数</label>
+      <div class="col-xs-8">
+        <select class="form-control" name="rateBsTableOptions"
+                ng-model="dtl.modalParams.period" required="">
+          <option value="" selected disabled>请选择期数</option>
+          <option value="">3期</option>
+          <option value="">6期</option>
+          <option value="">9期</option>
+          <option value="">12期</option>
+          <option value="">18期</option>
+          <option value="">24期</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-xs-4 control-label">费率 (%)</label>
+      <div class="col-xs-8">
+        <input type="number" class="form-control" placeholder="费率 (0-100)" name="cofRateCompany" max="100" min="0" ng-model="dtl.modalParams.rateCompany" required="">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-4 control-label">管理费</label>
+      <div class="col-xs-8">
+        <input type="number" class="form-control" placeholder="管理费" name="cofRateCompany" max="100" min="0" ng-model="dtl.modalParams.rateCompany" required="">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">确定</button>
+    <button type="button" class="btn" ng-click="close()">取消</button>
+  </form>
+</script>
+
+<!--项目配置-->
+<script type="text/ng-template" id="template/config-info.html">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="glyphicon glyphicon-th-list"></i> <span>项目配置</span>
+    </div>
+    <div class="panel-body">
+      <a class="btn btn-sm btn-outline btn-success" style="margin-top: 0!important;" ng-click="dtl.handle.openModal('template/edit-config.html', '新增项目配置', 1)"> <i class="fa fa-plus"></i> 新增项目</a>
+      <table id="departmentBsTable"></table>
+    </div>
+  </div>
+</script>
+
+<!--渠道信息-->
+<script type="text/ng-template" id="template/channel-info.html">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-bank"></i> <span>渠道信息</span>
+    </div>
+    <div class="panel-body">
+      <a class="btn btn-sm btn-outline btn-success" ng-click="dtl.handle.openModal('template/edit-base.html', '新增支持渠道', 1)"> <i class="fa fa-plus"></i> 新增渠道</a>
+      <table id="channelListTable"></table>
+    </div>
+  </div>
+</script>
+<!--新增项目-->
+<script type="text/ng-template" id="template/edit-config.html">
+  <form class="form-horizontal fontSizeCus" name="config" novalidate w5c-form-validate=""
+        w5c-submit="dtl.handle.submitForm(4)">
+    <div class="form-group">
+      <label class="col-xs-3 control-label">项目名称</label>
+      <div class="col-xs-9">
+
+        <select class="form-control" ng-model="dtl.modalParams.departmentCode"
+                name="bankCode" required id="entryName">
+          <option disabled value="">--请选择--</option>
+          <option  value="">眼部整形</option>
+          <option  value="">鼻部整形</option>
+          <option  value="">牙齿纠正</option>
+          <option  value="">丰胸</option>
+          <option  value="">植发</option>
+        </select>
+
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">确定</button>
+    <button type="button" class="btn" ng-click="close()">取消</button>
+  </form>
+</script>
+<!--新增渠道-->
+<script type="text/ng-template" id="template/edit-base.html">
+  <form class="form-horizontal fontSizeCus" name="baseForm" novalidate w5c-form-validate=""
+        w5c-submit="dtl.handle.submitForm(0)">
+    <div class="form-group" >
+      <label class="col-xs-4 control-label">渠道姓名 </label>
+      <div class="col-xs-8">
+        <input type="text" class="form-control" placeholder="渠道姓名 " name="perPeriodCommission1" w5c-dynamic-element="dtl.aaa81"  ng-model="dtl.modalParams.perPeriodCommission" ng-required="true">
+      </div>
+    </div>
+    <div class="form-group" >
+      <label class="col-xs-4 control-label">联系方式 </label>
+      <div class="col-xs-8">
+        <input type="text" class="form-control" placeholder="联系方式 " name="perPeriodCommission" w5c-dynamic-element="dtl.aaa8" ng-model="dtl.modalParams.perPeriodCommission" ng-required="true">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">确定</button>
+    <button type="button" class="btn" ng-click="close();baseForm.reset()">取消</button>
+  </form>
+</script>
+
+

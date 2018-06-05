@@ -1,0 +1,82 @@
+<div ng-controller="statCtrl as ren">
+  <div class="border-bottom white-bg path">
+    <p class="p-w-m full-height">
+      <span ui-sref="app.home">控制台首页</span>
+      <span class="p-w-xs text-muted">/</span>
+      <strong>还款管理</strong>
+    </p>
+  </div>
+  <div class="wrapper sidebar-content wrapper-content animated fadeInRight" ng-class="isSmart?'smart-no-padding':''">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>还款管理</h5>
+          </div>
+          <div class="ibox-content">
+            <div class="">
+              <form>
+                <div class="row">
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <select class="form-control" ng-model="ren.searchBy.STATE">
+                      <option value="" disabled selected>请选择：还款状态</option>
+                      <option value="0">未还款</option>
+                      <option value="1">已还款</option>
+                      <option value="9">已提前结清</option>
+                      <option value="8">已退款</option>
+                    </select>
+                  </div>
+                  <!--<div class="col-sm-6 col-md-4 m-b-sm">-->
+                    <!--<select class="form-control" ng-model="ren.searchBy.STATE"-->
+                            <!--ng-options="state[0] as state[1] for state in ren.init.state">-->
+                      <!--<option value="" disabled selected>请选择：还款类型</option>-->
+                    <!--</select>-->
+                  <!--</div>-->
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <select class="form-control" ng-model="ren.searchBy.STATE">
+                      <option value="" disabled selected>请选择：还款渠道</option>
+                      <option value="9">线下</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <my-date-picker readonly class="form-control feedback-icon" placeholder="应还日期（开始）" title="应还日期（开始）" date="ren.searchBy.beginDate" date-max="ren.today"></my-date-picker>
+                  </div>
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <my-date-picker readonly class="form-control feedback-icon" placeholder="应还日期（结束）" title="应还日期（结束）" date="ren.searchBy.endDate" date-max="ren.today"></my-date-picker>
+                  </div>
+
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <my-date-picker readonly class="form-control feedback-icon" placeholder="还款日期（开始）" title="还款日期（开始）" date="ren.searchBy.beginDate" date-max="ren.today"></my-date-picker>
+                  </div>
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <my-date-picker readonly class="form-control feedback-icon" placeholder="还款日期（结束）" title="还款日期（结束）" date="ren.searchBy.endDate" date-max="ren.today"></my-date-picker>
+                  </div>
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <button type="button" class="btn btn-outline btn-default">
+                      <i class="fa fa-upload"></i> 导出
+                    </button>
+                  </div>
+                  <div class="col-sm-6 col-md-4 m-b-sm">
+                    <input type="text" class="form-control" placeholder="商户号 / 商户名称" ng-model="ren.searchBy.COMPANY_NAME">
+                  </div>
+
+                  <div class="col-sm-6 col-md-4 m-b-sm ">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="客户姓名 / 手机号 / 合同号" ng-model="ren.searchBy.searchKeys">
+                      <div class="input-group-btn">
+                        <button type="submit" class="btn btn-primary" ng-click="ren.handle.search()">搜索</button>
+                        <button type="button" class="btn btn-info" ng-click="ren.handle.search2()">重置</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <table id="test233"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

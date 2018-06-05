@@ -1,0 +1,155 @@
+<div ng-controller="managerCtrl as bus">
+  <div class="border-bottom white-bg path">
+    <p class="p-w-m full-height">
+      <span ui-sref="app.home">控制台首页</span>
+      <span class="p-w-xs text-muted">/</span>
+      <strong ui-sref="app.merchant.manager">商户管理</strong>
+    </p>
+  </div>
+  <div class="wrapper sidebar-content wrapper-content animated fadeInRight" ng-class="isSmart?'smart-no-padding':''">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+          <div class="ibox-title">
+            <h5>商户管理</h5>
+          </div>
+          <div class="ibox-content">
+            <div class="">
+              <form>
+                <div class="row">
+                  <div class="col-sm-4 col-md-4 m-b-sm">
+                      <button type="button" class="btn btn-outline btn-default" ng-click="bus.handle.addMerchant('template/addMerchant.html')">
+                        <i class="fa fa-plus"></i> 新增商户
+                      </button>
+                  </div>
+                  <div class="col-sm-4 col-md-4 m-b-sm">
+                    <select class="form-control" ng-model="bus.searchBy.STATE">
+                      <option value="" disabled selected>请选择：商户类型</option>
+                      <option value="YLFQ">医疗分期</option>
+                    </select>
+                  </div>
+
+                  <div class="col-sm-4 col-md-4 m-b-sm">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="商户号 / 商户名称" ng-model="bus.searchBy.searchKeys">
+                      <div class="input-group-btn">
+                        <button type="submit" class="btn btn-primary" >搜索</button>
+                        <button type="button" class="btn btn-info" >重置</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <table id="businessTable"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/ng-template" id="template/addMerchant.html">
+  <form class="form-horizontal" name="hspForm" novalidate w5c-form-validate=""
+        w5c-submit="dtl.handle.submitForm(1)">
+    <div class="form-group">
+      <label class="col-xs-3 control-label">商户名称（*）</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" placeholder="商户名称" name="accountBankNo" ng-model="dtl.modalParams.accountBankNo" ng-required="true" ng-pattern="/^[0-9]*$/">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">营业执照名称（*）</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" required
+               ng-model="dtl.modalParams.accountName" name="accountName"
+               placeholder="营业执照名称"
+        >
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">商户统一社会信用代码（*）</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" required
+               ng-model="dtl.modalParams.accountName" name="accountName"
+               placeholder="商户统一社会信用代码"
+        >
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">商户类型（*）</label>
+      <div class="col-sm-9">
+        <select class="  form-control" ng-model="dtl.modalParams.bankCode"
+                name="bankCode" required id="bankId">
+          <option disabled value="">--请选择：商户类型--</option>
+          <option>整形</option>
+          <option>祛痘</option>
+          <option>美容</option>
+          <option>植发</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3 control-label">区域省市（*）</label>
+      <div class="col-sm-3">
+        <select style="margin-bottom: 10px!important;" class="form-control"
+                name="type" required="" ng-model="adc.merInfo.province"
+                ng-change="adc.handle.getCityList()">
+          <option disabled value="">--请选择--</option>
+          <option value="">浙江</option>
+          <option value="">安徽</option>
+          <option value="">江苏</option>
+          <option value="">上海</option>
+        </select>
+      </div>
+
+      <div class="col-sm-3">
+        <select class="form-control" required ng-model="adc.merInfo.city"
+                ng-change="adc.handle.getDistrict(adc.merInfo.city)" name="city">
+          <option disabled value="">--请选择--</option>
+          <option value="">安庆</option>
+          <option value="">杭州</option>
+          <option value="">金华</option>
+        </select>
+      </div>
+
+      <div class="col-sm-3">
+        <select class="form-control" required ng-model="adc.merInfo.city"
+                ng-change="adc.handle.getDistrict(adc.merInfo.city)" name="city">
+          <option disabled value="">--请选择--</option>
+          <option value="">安庆</option>
+          <option value="">杭州</option>
+          <option value="">金华</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-xs-3 control-label">法人姓名（*）</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" placeholder="法人姓名" name="accountBankNo" ng-model="dtl.modalParams.accountBankNo" ng-required="true" ng-pattern="/^[0-9]*$/">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-xs-3 control-label">法人身份证号 （*）</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" placeholder="法人身份证号" name="accountBankNo" ng-model="dtl.modalParams.accountBankNo" ng-required="true" ng-pattern="/^[0-9]*$/">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-xs-3 control-label">法人身手机号（*）</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" placeholder="法人身手机号" name="accountBankNo" ng-model="dtl.modalParams.accountBankNo" ng-required="true" ng-pattern="/^[0-9]*$/">
+      </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-success">确定</button>
+    <button type="button" class="btn" ng-click="close()">取消</button>
+  </form>
+</script>
+

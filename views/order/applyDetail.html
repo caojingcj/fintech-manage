@@ -1,0 +1,178 @@
+<div class="detailPage" ng-controller="applyDetailCtrl as apl">
+    <div class="border-bottom white-bg path">
+        <p class="p-w-m full-height">
+            <span ui-sref="app.home">控制台首页</span>
+            <span class="p-w-xs text-muted">/</span>
+            <span ui-sref="app.order.orderManage">订单管理</span>
+            <span class="p-w-xs text-muted">/</span>
+            <strong>订单详情</strong>
+        </p>
+    </div>
+    <div class="wrapper sidebar-content wrapper-content animated fadeInRight" ng-class="isSmart?'smart-no-padding':''">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>订单基本信息</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <ul class="ul-list" style="margin-bottom: 0">
+                            <li><span> <i class="fa fa-fw fa-user"/> 客户姓名</span><span>方青</span></li>
+                            <li><span> <i class="fa fa-fw fa-vcard"/> 身份证</span><span>3408271999009163963</span></li>
+                            <li><span> <i class="fa fa-fw fa-child"/> 年龄</span><span> 25岁</span></li>
+                            <li><span> <i class="fa fa-fw fa-mobile"/> 手机号</span><span>18267924536</span></li>
+                            <li>
+                                <span> <i class="fa fa-fw fa-dot-circle-o"/> 审批状态</span>
+                                <span class="label label-info">录入中</span>
+                            </li>
+                            <li><span>&nbsp;<i class="glyphicon glyphicon-file"/> 合同号</span><span>148977179561482676</span></li>
+                            <li><span>&nbsp;<i class="glyphicon glyphicon-asterisk"/> 是否担保客户</span><span>是</span></li>
+                            <li>
+                                <a class="btn btn-outline btn-primary" ng-click="apl.handle.deleteItemFromTable()"> <i class="fa fa-repeat"></i> 担保</a>
+                                <a class="btn btn-outline btn-danger" ng-click="apl.handle.cancelOrder()"> <i class="fa fa-ban"/> 取消订单</a>
+                                <a class="btn btn-outline btn-primary" ng-click="apl.handle.cancelOrder()"> <i class="glyphicon glyphicon-check"></i> 担保通过</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>订单详情</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <uib-tabset>
+                            <uib-tab>
+                                <uib-tab-heading>
+                                    <span>基本信息</span>
+                                </uib-tab-heading>
+                                <div class="panels" ng-include="'template/apply-base-info.html'"></div>
+                            </uib-tab>
+                            <uib-tab>
+                            <uib-tab-heading>
+                                <span>个人附件信息</span>
+                            </uib-tab-heading>
+                            <div class="panels" ng-include="'template/person-files-info.html'"></div>
+                        </uib-tab>
+                            <uib-tab>
+                                <uib-tab-heading>
+                                    <span>还款计划</span>
+                                </uib-tab-heading>
+                                <div class="panels" ng-include="'template/repayment-plan-info.html'"></div>
+                            </uib-tab>
+                        </uib-tabset>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="template/apply-base-info.html">
+    <!--基本信息-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span><i class="fa fa-vcard"/></span>
+            <span>身份证信息</span>
+        </div>
+        <div class="panel-body">
+            <ul class="ul-list">
+                <li><span>姓名</span><span>方青</span></li>
+                <li><span>民族</span><span>汉族</span></li>
+                <li><span>身份证号</span><span>3408271999009163963</span></li>
+                <li><span>住址</span><span>上海市徐汇区龙漕路</span></li>
+                <li><span>有效期限</span><span>2088-12-12</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span><i class="fa fa-vcard"/></span>
+            <span>个人信息</span>
+        </div>
+        <div class="panel-body">
+            <ul class="ul-list">
+                <li><span>婚姻状况</span><span>未婚</span></li>
+                <li><span>学历</span><span>本科</span></li>
+                <li><span>职业状况</span><span>在职</span></li>
+                <li><span>常用联系人地址</span><span>上海市徐汇区龙漕路</span></li>
+                <li><span>联系人姓名</span><span>尔康</span></li>
+                <li><span>联系人电话</span><span>18267924536</span></li>
+                <li><span>定金金额</span><span>￥98500</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span><i class="fa fa-vcard"/></span>
+            <span>咨询师信息</span>
+        </div>
+        <div class="panel-body">
+            <ul class="ul-list">
+                <li><span>咨询师姓名</span><span>杨威</span></li>
+                <li><span>咨询师电话</span><span>18267924536</span></li>
+            </ul>
+        </div>
+    </div>
+
+
+</script>
+
+<script type="text/ng-template" id="template/person-files-info.html">
+    <!--个人附件信息-->
+    <div class="panel panel-default" ng-repeat="imgs in [
+        [ 1, '身份证正面照片'],
+        [ 2, '身份证反面照片'],
+        [ 4, '医疗确认单'],
+        [ 0, '担保函']
+    ] track by imgs[0]">
+        <div class="panel-heading">
+            <i class="glyphicon glyphicon-picture"></i> <span>{{imgs[1]}}</span>
+        </div>
+        <div class="panel-body">
+            <span ng-if="!apl.data.images[imgs[0]]">暂无记录</span>
+            <ol class="ol-list" ng-if="apl.data.images[imgs[0]]">
+                <li ng-repeat="img in apl.data.images[imgs[0]]">
+                    <!--img-->
+                    <a href="{{img.CLOUD_ID}}" title="{{imgs[1]}}" data-gallery
+                       ng-if="img.suffix=='jpg'|| img.suffix=='png' || img.suffix=='jpeg'">
+                        <img bn-lazy-src="{{img.CLOUD_ID}}">
+                    </a>
+
+                    <!--pdf-->
+                    <a href="{{img.CLOUD_ID}}" target="_blank" ng-if="img.suffix === 'pdf'">
+                        <i class="fa fa-file-pdf-o fa-3x"></i>
+                        <p>pdf文档</p>
+                    </a>
+
+                    <!--zip-->
+                    <a href="{{img.CLOUD_ID}}" download="{{img.CLOUD_ID}}"
+                       ng-if="img.suffix === 'zip' || img.suffix === 'rar' || img.suffix === '7z'">
+                        <i class="fa fa-file-zip-o fa-3x"></i>
+                        <p>压缩包文件</p>
+                    </a>
+
+                </li>
+            </ol>
+        </div>
+    </div>
+</script>
+
+<script type="text/ng-template" id="template/repayment-plan-info.html">
+    <!--还款计划-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span><i class="fa fa-vcard"/></span>
+            <span>还款计划</span>
+        </div>
+        <div class="panel-body">
+            <table id="repaymentPlan"></table>
+        </div>
+    </div>
+</script>
+

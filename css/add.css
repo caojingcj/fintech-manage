@@ -1,0 +1,216 @@
+#addManage .panel-heading:hover{
+    background: #ccc;
+    cursor: pointer;
+}
+.state{
+    background: #23c6c8;
+    color:#fff;
+    padding: 3px 8px ;
+    font-size: 10px;
+    border-radius: .25em;
+    line-height: 13px;
+}
+#picUpload .control-label{
+    text-align: right!important;
+}
+#picUpload .col-sm-12{
+    margin-bottom: 10px;
+}
+#picUpload .btn{
+    font-size: 12px!important;
+}
+.alert-danger{
+    padding: 10px!important;
+}
+.submitAudit{
+    display: inline-block;
+    width:100%;
+}
+
+
+/*大屏幕*/
+@media (min-width: 1200px) and (max-width: 2600px) {
+    #day{
+        padding-left: 0!important;
+    }
+    #endDay{
+        padding-right: 0!important;
+    }
+
+}
+
+@media (min-width: 970px) and (max-width: 1200px) {
+
+}
+
+/* 平板电脑和小屏电脑之间的分辨率 */
+@media (min-width: 200px) and (max-width: 979px) {
+    #picUpload .btn{
+        padding: 1px 5px !important;
+    }
+    #picUpload .col-sm-3{
+        padding-left: 0!important;
+        padding-right: 0!important;
+    }
+    #picUpload .col-sm-12{
+        padding-right: 0!important;
+        padding-left: 0!important;
+    }
+    #rateBtn .btn{
+        padding: 6px 5px!important;
+
+    }
+    #rateBtn .input-group-addon{
+        padding: 6px 3px !important;
+    }
+    #rateBtn .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+        padding: 5px!important;
+    }
+
+}
+
+/* 横向放置的手机和竖向放置的平板之间的分辨率 */
+@media (max-width: 767px) {
+
+}
+
+/* 横向放置的手机及分辨率更小的设备 */
+@media (max-width: 480px) {
+
+}
+.bootstrap-touchspin-down{
+    display: none!important;
+}
+.bootstrap-touchspin-up{
+    display: none!important;
+}
+/*
+#essentialInformation li :hover{
+    cursor:default!important;
+}
+#essentialInformation ul :hover{
+    cursor:default!important;
+}
+#essentialInformation span :hover{
+    cursor:default!important;
+}*/
+#sub :hover{
+    cursor: pointer!important;
+}
+#operation .btn-info{
+    padding: 6px 35px!important;
+}
+#Today {
+    border-bottom-left-radius: 0!important;
+    border-top-left-radius: 0!important;
+}
+#ibox-title:hover{
+    background: #ededed!important;
+    cursor: pointer;
+}
+#haiEr:hover{
+    background: #ccc!important;
+    cursor: pointer;
+}
+.merchantName:hover{
+    cursor: pointer;
+}
+#ibox-content li{
+    padding: 10px 0!important;
+}
+.oldSystem{
+    color:#686b6d
+}
+.oldSystem:hover{
+    color:#686b6d
+}
+/*#trial{*/
+    /*transition: transform .5s;*/
+/*}*/
+/*#trial:hover{*/
+    /*cursor: pointer;*/
+    /*transform: scale(1.2);;*/
+/*}*/
+
+#statistics select:hover{
+    /*background: #ededed;*/
+    cursor: pointer ;
+}
+#statistics .feedback-icon:hover{
+    /*background: #ededed;*/
+    cursor: pointer ;
+}
+#addManage .panel-body{
+    padding: 0 15px;
+    /*margin: 15px 0;*/
+}
+#addManage .panel-body .form-group:nth-child(1){
+    margin-top: 15px;
+}
+#addManage .panel-body .btn-info{
+    margin-bottom: 15px;
+}
+#addManage .panel-body .alert{
+    margin-top: 15px;
+}
+.ruleCode:hover{
+    cursor: pointer!important;
+}
+.onlyName:hover{
+    cursor: pointer!important;
+}
+#signOut:hover{
+    cursor: pointer!important;
+}
+#addManage .panel-default>.panel-heading{
+    /*background-color: #ffffff;*/
+}
+#paymentVoucher:hover{
+    cursor: pointer;
+}
+.notThrough:hover{
+    cursor: default;
+}
+.notThrough1:hover{
+    cursor: pointer;
+}
+
+
+.box .checkbox_item{
+    position:relative;
+    display:inline-block;
+    margin-right:10px;
+    height:16px;
+}
+.checkbox_item input{
+    position:absolute;
+    top:-9999px;
+    left:-9999px;
+}
+.checkbox_item .check_label{
+    display:inline-block;
+    cursor:default;
+}
+.checkbox_icon{
+    display:block;
+    float:left;
+    margin-right:5px;
+    width:16px;
+    height:16px;
+    background:url(../img/checkbox_icon.png) 0 0;
+}
+.check_label.on .checkbox_icon{
+    background-position:-16px 0;
+}
+.checkbox_text{
+    float:left;
+    height:16px;
+    line-height:16px;
+}
+.fontSizeCus span,label,input,select,textarea{
+    font-size: 12px!important;
+}
+
+
+
+

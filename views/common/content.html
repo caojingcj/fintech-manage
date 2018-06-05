@@ -1,0 +1,54 @@
+<div id="wrapper">
+
+  <!-- side-left -->
+  <div ng-include="'views/common/navigation.html'"></div>
+
+  <!-- Page wraper -->
+  <div id="page-wrapper" class="gray-bg {{$state.current.name}}" style="padding:0;">
+
+    <!-- header bar -->
+    <div>
+      <div class="row border-bottom" style="margin:0;">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+          <div class="navbar-header">
+            <span minimaliza-sidebar></span>
+          </div>
+          <ul class="nav navbar-top-links" style="float: right;margin-right:10px">
+            <li style="margin-right:0;">
+              <a ng-click="signOut()" id="signOut">  <!--ui-sref="login"-->
+                <i class="fa fa-sign-out"></i>退出
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div ui-view></div>
+
+    <div>
+      <div class="footer">
+        <div class="pull-right">
+          <small> &copy; 2017-2018 <a href="http://www.16fenqi.com" target="_blank">上海乔融金融信息服务有限公司</a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/ng-template" id="group-template.html">
+  <div class="panel panel-default">
+    <div class="panel-heading" ng-click="toggleOpen()">
+      <p class="panel-title" uib-accordion-transclude="heading">
+        <span>{{heading}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': isOpen, 'glyphicon-chevron-right': !isOpen}"></i>
+      </p>
+    </div>
+    <div class="panel-collapse collapse" uib-collapse="!isOpen">
+      <div class="panel-body" ng-transclude></div>
+    </div>
+  </div>
+</script>
+<script>
+
+</script>
