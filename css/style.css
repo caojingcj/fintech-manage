@@ -10723,6 +10723,9 @@ input[type='checkbox'].mui-switch {
 
 .swal2-modal .swal2-title {
   font-size: 13px;
+  /*padding-bottom: 15px;*/
+  /*border-bottom: 1px solid #e5e6e7;*/
+
   margin-bottom: 15px;
 }
 
