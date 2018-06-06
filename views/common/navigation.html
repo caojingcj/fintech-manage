@@ -24,7 +24,7 @@
         <a ui-sref="app.home" ui-sref-opts="{reload:true}"><i class="fa fa-home" style="font-size: 18px"></i> <span class="nav-label">控制台首页</span></a>
       </li>
       <li ng-class="{active: state.includes('app.order')}">
-        <a href="#"><i class="fa fa-amazon"></i> <span class="nav-label ">订单管理</span> <span class="fa arrow"></span></a>
+        <a href="#"><i class="glyphicon glyphicon-level-up"></i> <span class="nav-label ">订单管理</span> <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse" ng-class="{in: state.includes('app.order')}">
           <li ui-sref-active="active"><a ui-sref="app.order.orderManage" ui-sref-opts="{reload:true}">订单管理</a></li>
           <li ui-sref-active="active"><a ui-sref="app.order.returnManage" ui-sref-opts="{reload:true}">还款管理</a></li>
