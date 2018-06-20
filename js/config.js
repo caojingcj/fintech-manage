@@ -112,7 +112,7 @@
                 data: {pageTitle: '还款管理'},
                 resolve: {
                     deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-                        return $ocLazyLoad.load('views/order/merStat.js')
+                        return $ocLazyLoad.load('views/order/returnManageCtrl.js')
                     }]
                 }
             })
