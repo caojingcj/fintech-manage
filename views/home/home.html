@@ -1,9 +1,116 @@
 <div ng-controller="homeCtrl as home">
-  <div class="border-bottom white-bg path">
-    <p class="p-w-m full-height">
-      <strong>控制台首页</strong>
-    </p>
-  </div>
+  <!--<div class="border-bottom white-bg path">-->
+    <!--<p class="p-w-m full-height">-->
+      <!--<strong>控制台首页</strong>-->
+    <!--</p>-->
+  <!--</div>-->
   <div class="wrapper sidebar-content wrapper-content animated fadeInRight" ng-class="isSmart?'smart-no-padding':''">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="widget style1">
+          <div class="row">
+            <div class="col-xs-4 text-center">
+              <i class="fa fa-user fa-5x"></i>
+            </div>
+            <div class="col-xs-8 text-right">
+              <span> 今日申请单数 </span>
+              <h2 class="font-bold">{{home.info.reqCount}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="widget style1 navy-bg">
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-thumbs-up fa-5x"></i>
+            </div>
+            <div class="col-xs-8 text-right">
+              <span> 今日通过单数 </span>
+
+              <h2 class="font-bold">{{home.info.successCount}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="widget style1 lazur-bg">
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-thumbs-down fa-5x"></i>
+            </div>
+            <div class="col-xs-8 text-right">
+              <span> 今日拒绝单数 </span>
+
+              <h2 class="font-bold">{{home.info.refuseCount}}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="widget style1 yellow-bg">
+          <div class="row">
+            <div class="col-xs-4">
+              <i class="fa fa-check-square-o fa-5x"></i>
+            </div>
+            <div class="col-xs-8 text-right">
+              <span> 今日通过率 </span>
+
+              <h2 class="font-bold">{{home.info.successCountRate}} %</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="widget navy-bg no-padding">
+          <div class="p-m">
+            <h1 class="m-xs">{{home.info.targetMoney | currency: '￥'}}</h1>
+
+            <h3 class="font-bold no-margins">
+              申请金额
+            </h3>
+            <small>今日申请金额</small>
+          </div>
+          <div class="flot-chart">
+            <div flot class="flot-chart-content" dataset="home.flotChartData1"
+                 options="home.flotChartOptions1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="widget lazur-bg no-padding">
+          <div class="p-m">
+            <h1 class="m-xs">{{home.info.successLoansMoney | currency: '￥'}}</h1>
+
+            <h3 class="font-bold no-margins">
+              通过金额
+            </h3>
+            <small>今日通过金额</small>
+          </div>
+          <div class="flot-chart">
+            <div flot class="flot-chart-content" dataset="home.flotChartData2"
+                 options="home.flotChartOptions2"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="widget yellw-bg no-padding">
+          <div class="p-m">
+            <h1 class="m-xs">{{home.info.refuseMoney | currency: '￥'}}</h1>
+
+            <h3 class="font-bold no-margins">
+              拒绝金额
+            </h3>
+            <small>今日拒绝金额</small>
+          </div>
+          <div class="flot-chart">
+            <div flot class="flot-chart-content" dataset="home.flotChartData3"
+                 options="home.flotChartOptions3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

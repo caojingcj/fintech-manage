@@ -8,33 +8,34 @@
             vm.handle = {
                 search: search,
                 draw: draw,
-                addUser: addUser
+                addUser: addUser,
+                toggleItemStateFromTable1:toggleItemStateFromTable1,
+                deleteItemFromTable:deleteItemFromTable
             };
-
 
 
             var dataList = ({
                 "dataList": [
-                  {
-                    "aa": "方青",
-                    "sendName": "admin",
-                    "sendTime": "105046",
-                    "sendMobile": "admin",
-                    "TRANS_MONEY": 1,
-                    "dddd": '蕾特恩昆明朗悦湾店',
-                    "APPLY_REVIEW_TIME": 123456,
-                    'type': '普通用户'
-                  },
-                  {
-                    "aa": "尔康",
-                    "sendName": "user",
-                    "sendTime": "105041",
-                    "sendMobile": "admin",
-                    "TRANS_MONEY": 0,
-                    "dddd": '苗方清颜郴州名汇城店',
-                    "APPLY_REVIEW_TIME": 123123,
-                    'type': '商户用户'
-                  }
+                    {
+                        "aa": "方青",
+                        "sendName": "admin",
+                        "sendTime": "105046",
+                        "sendMobile": "admin",
+                        "TRANS_MONEY": 1,
+                        "dddd": '蕾特恩昆明朗悦湾店',
+                        "APPLY_REVIEW_TIME": 123456,
+                        'type': '普通用户'
+                    },
+                    {
+                        "aa": "尔康",
+                        "sendName": "user",
+                        "sendTime": "105041",
+                        "sendMobile": "admin",
+                        "TRANS_MONEY": 0,
+                        "dddd": '苗方清颜郴州名汇城店',
+                        "APPLY_REVIEW_TIME": 123123,
+                        'type': '商户用户'
+                    }
                 ]
             });
 
@@ -82,6 +83,24 @@
                 this.drawTable(1, vm.searchBy.size);
             }
 
+            function toggleItemStateFromTable1() {
+
+            }
+
+            function deleteItemFromTable() {
+                swal({
+                    title: '确认删除吗？',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonText: '取消',
+                    confirmButtonText: '删除',
+                    width: '300px'
+                }).then(function (res) {
+                    close()
+                }, function (err) {
+                });
+            }
+
             draw(dataList);
 
             function draw(res) {
@@ -119,22 +138,22 @@
                         , {
                             field: '',
                             title: '商户号 - 商户名',
-                            formatter:function (val,row) {
-                                return '<span>'+row.sendTime+'</span> -  <span>'+row.dddd+'</span>'
+                            formatter: function (val, row) {
+                                return '<span>' + row.sendTime + '</span> -  <span>' + row.dddd + '</span>'
                             }
                         }
                         , {
                             field: 'TRANS_MONEY',
                             title: '是否可用',
                             formatter: function (val) {
-                              return '<label><input type="checkbox" class="js-switch" ui-switch ></label>';
+                                return '<label><input type="checkbox" class="js-switch" ui-switch ng-click="user.handle.toggleItemStateFromTable1()"></label>';
                             }
                         }
                         , {
                             field: 'failure',
                             title: '操作',
                             formatter: function () {
-                                return "<a class='btn btn-xs btn-outline btn-primary' ng-click='user.handle.addUser(\"template/addUser.html\", \"编辑用户\")'>" +
+                                return "<a class='btn btn-xs btn-outline btn-primary' ng-click='user.handle.addUser(\"template/addUser.html\", \"编辑用户\",2)'>" +
                                     "<i class='fa fa-pencil'></i> 编辑</a> " +
                                     " <a class='btn btn-xs btn-outline btn-danger' ng-click='user.handle.deleteItemFromTable(2)'><i class='fa fa-trash'></i> 删除</a>";
                             }
@@ -145,7 +164,7 @@
                         vm.searchBy.page = pageNum;
                         vm.searchBy.size = pageSize;
                         sessionStorage.setItem('applySearchParams', JSON.stringify(vm.searchBy));
-                    },
+                    }
                 });
 
                 $compile(qqq)($scope);
@@ -153,7 +172,8 @@
 
             $('[data-toggle="tooltip"]').tooltip();
 
-            function addUser(url, title) {
+            function addUser(url, title,num) {
+                vm.flag = num;
                 swal({
                     title: '<div style="margin-bottom:15px;">' + title + '</div>',
                     html: '<div id="swalHtml"></div>',

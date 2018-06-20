@@ -15,7 +15,7 @@
                 swal({
                     title: '确认您的操作',
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
+                    confirmButtonColor: '#23c6c8',
                     cancelButtonText: '取消',
                     confirmButtonText: '确认',
                     width: '300px'
@@ -147,7 +147,7 @@
                         "sendTime": "543.00",
                         "sendMobile": "未还",
                         "TRANS_MONEY": '',
-                        "dddd": '10天',
+                        "dddd": '10 天',
                     }]
             });
 

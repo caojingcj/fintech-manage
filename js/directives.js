@@ -40,9 +40,9 @@ function pageTitle ($rootScope, $timeout) {
     link: function (scope, element) {
       var listener = function (event, toState, toParams, fromState, fromParams) {
         // Default title - load on Dashboard 1
-        var title = '乔融';
+        var title = '舵定分';
         // Create your own title pattern
-        if (toState.data && toState.data.pageTitle) title = '乔融 | ' + toState.data.pageTitle;
+        if (toState.data && toState.data.pageTitle) title = '舵定分 | ' + toState.data.pageTitle;
         $timeout(function () {
           element.text(title);
         });

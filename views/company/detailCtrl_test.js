@@ -7,7 +7,8 @@
         vm.handle = {
             openModal:openModal,
             toggleItemStateFromTable:toggleItemStateFromTable,
-            deleteItemFromTable:deleteItemFromTable
+            deleteItemFromTable:deleteItemFromTable,
+            contrlEnable:contrlEnable
         };
 
         vm.newUrl = 'http://data.16fenqi.com/data/wx/v1/requestQRCode?value=999999';
@@ -330,6 +331,20 @@
                 confirmButtonColor: '#d33',
                 cancelButtonText: '取消',
                 confirmButtonText: '删除',
+                width: '300px'
+            }).then(function (res) {
+                close()
+            }, function (err) {
+            });
+        }
+
+        function contrlEnable() {
+            swal({
+                title: '确认此操作',
+                showCancelButton: true,
+                confirmButtonColor: '#23c6c8',
+                cancelButtonText: '取消',
+                confirmButtonText: '确认',
                 width: '300px'
             }).then(function (res) {
                 close()
